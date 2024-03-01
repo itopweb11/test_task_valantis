@@ -92,6 +92,7 @@ const Products = () => {
     const onChangeFilter = (search) => {
         if (!filter.loading) {
             if (search !== null) {
+                filter.toBegin()
                 getFilterIds(search)
             } else if (lastAction !== "items") {
                 filter.toBegin()
