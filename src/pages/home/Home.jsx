@@ -12,7 +12,7 @@ const Home = () => {
     return (
         <div className="home">
             <div
-                className="home__banner w-full h-screen flex flex-col justify-end pb-[100px] mt-[-121px] max-[500px]:pb-5">
+                className="home__banner w-full h-screen flex flex-col justify-end pb-[100px] mt-[-121px]">
                 <div className="containner flex flex-col gap-[30px] max-[500px]:gap-[15px]">
                     <h1 style={{fontSize: 'clamp(25px, 4.9vw, 55px)'}} className="text-white">
                         Добро пожаловать в Valantis, <br className="max-lg:hidden"/> мир изысканных ювелирных украшений
@@ -28,7 +28,7 @@ const Home = () => {
                             <br className="max-lg:hidden"/>сделавший ставку на природную красоту драгоценных камней.
                         </p>
                         <img
-                            className="cursor-pointer w-[50px] h-[50px] max-sm:w-[30px] max-sm:h-[30px]"
+                            className="cursor-pointer w-[50px] h-[50px] max-sm:w-[40px] max-sm:h-[40px]"
                             onClick={scrollToBottom}
                             src={ScrollButtonImg}
                             alt="ScrollButton"
