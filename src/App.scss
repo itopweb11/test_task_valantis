@@ -1,0 +1,86 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer components {
+    .bg-tiles {
+        background-size: 73px 73px;
+        background-image: linear-gradient(currentColor 1px, transparent 1px),
+        linear-gradient(to right, currentColor 1px, transparent 1px);
+        @apply -m-0.5;
+    }
+}
+
+.app {
+
+}
+
+.home__banner {
+    background-image: url("img/banner.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.containner {
+    max-width: 1500px;
+    width: 100%;
+    padding-left: 80px;
+    padding-right: 80px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header__menu a {
+    padding: 10px 14px;
+}
+
+.header__menu a:hover {
+    transition-duration: 0.2s;
+    color: #afafaf !important;
+}
+
+
+.header__menu_contact a:hover {
+    transition-duration: 0.2s;
+    color: #afafaf !important;
+}
+
+input:focus, select:focus {
+    box-shadow: none!important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button,
+select::-webkit-outer-spin-button,
+select::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.border-left {
+    border-left: 4px solid;
+    border-color: #12123fe6;
+}
+
+.gradient-border-left {
+    border-left: 4px solid;
+    border-color: #12123fe6;
+    background: rgba(8, 108, 128, 0.1);
+    padding: 10px;
+}
+
+/*media*/
+
+@media all and (max-width: 1200px) {
+    .containner {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
+
+@media all and (max-width: 1200px) {
+    .containner {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}

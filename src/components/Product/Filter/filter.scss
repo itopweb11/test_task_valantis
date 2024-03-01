@@ -1,0 +1,37 @@
+.filter {
+    .filter-icon {
+        cursor: pointer;
+
+        path {
+            fill: rgba(0, 0, 0, 0.5);
+            transition: all .5s;
+        }
+
+        &:hover {
+            path {
+                fill: #12123fe6;
+                transition: all .5s;
+            }
+        }
+    }
+
+    .filter-items {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height .5s;
+    }
+}
+
+.filter.active {
+    .filter-icon {
+        path {
+            fill: #12123fe6;
+            transition: all .5s;
+        }
+    }
+
+    .filter-items {
+        max-height: 1000px;
+        transition: max-height .5s;
+    }
+}
