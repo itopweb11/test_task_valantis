@@ -11,13 +11,10 @@ const Home = () => {
 
     return (
         <div className="home">
-            <div
-                className="home__banner w-full h-screen flex flex-col justify-end pb-[100px] mt-[-121px]">
+            <div className="home__banner w-full h-screen flex flex-col justify-end pb-[100px] mt-[-121px]">
                 <div className="containner flex flex-col gap-[30px] max-[500px]:gap-[15px]">
                     <h1 style={{fontSize: 'clamp(25px, 4.9vw, 55px)'}} className="text-white">
-                        Добро пожаловать в Valantis,
-                        <br className="max-lg:hidden"/>
-                        мир изысканных ювелирных украшений
+                        Добро пожаловать в Valantis,<br className="max-lg:hidden"/>мир изысканных ювелирных украшений
                     </h1>
                     <p style={{fontSize: 'clamp(15px, 1.8vw, 20px)'}} className="text-white">
                         Valantis - это эксклюзивный интернет-магазин ювелирных изделий, созданный для тех,

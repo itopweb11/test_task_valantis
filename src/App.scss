@@ -84,3 +84,9 @@ select::-webkit-inner-spin-button {
         padding-right: 16px;
     }
 }
+
+@media all and (max-width: 850px) {
+    .home__banner {
+        background-image: url("img/banner-media.jpg");
+    }
+}
