@@ -9,7 +9,8 @@ const Products = () => {
     const productsRef = useRef(null)
 
     const [products, setProducts] = useState([])
-    const [lastAction, setLastAction] = useState("")
+    const [lastAction, setLastAction] = useState("items")
+    const [search, setSearch] = useState({})
 
     const filter = useFilter({limit: 50})
 
@@ -82,21 +83,35 @@ const Products = () => {
 
 
     useEffect(() => {
-        getItemsIds()
+        if (lastAction === "items"){
+            getItemsIds()
+        }
         if (lastAction) {
             scrollToTop()
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filter.offset]);
 
+    useEffect(() => {
+        if (lastAction === "filter"){
+            getFilterIds(search)
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [filter.offset, search]);
+
     const onChangeFilter = (search) => {
         if (!filter.loading) {
             if (search !== null) {
+                setLastAction("filter")
                 filter.toBegin()
-                getFilterIds(search)
+                setSearch(search)
             } else if (lastAction !== "items") {
-                filter.toBegin()
-                getItemsIds()
+                setLastAction("items")
+                if (filter.offset === 0){
+                    getItemsIds()
+                }else{
+                    filter.toBegin()
+                }
             }
         }
     }
