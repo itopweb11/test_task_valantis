@@ -44,6 +44,7 @@ const Products = () => {
     const getItemsIds = async () => {
         try {
             filter.setLoading(true)
+            scrollToTop()
             const response = await request({
                 "action": "get_ids",
                 "params": {
@@ -64,6 +65,7 @@ const Products = () => {
     const getFilterIds = async (search) => {
         try {
             filter.setLoading(true)
+            scrollToTop()
             const response = await request({
                 "action": "filter",
                 "params": {
@@ -85,9 +87,6 @@ const Products = () => {
     useEffect(() => {
         if (lastAction === "items"){
             getItemsIds()
-        }
-        if (lastAction) {
-            scrollToTop()
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filter.offset]);
