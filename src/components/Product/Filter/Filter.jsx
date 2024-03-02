@@ -5,48 +5,70 @@ import {useFilter} from "@/helpers/filter";
 import loadingImg from "@/img/loading.svg";
 
 const Filter = ({onChange, loading}) => {
+
+    //Значения поиска по умолчанию
     const defaultSearch = {
         price: 0,
         product: "",
         brand: "",
-    }
-    const [search, setSearch] = useState(defaultSearch)
+    };
 
-    const [isActive, setIsActive] = useState(false)
-    const [brands, setBrands] = useState([])
-    const [isValid, setIsValid] = useState(false)
-    const filter = useFilter({limit: 50})
+    // Состояние для хранения текущих параметров поиска
+    const [search, setSearch] = useState(defaultSearch);
+
+    // Сост. для отслеживания активности компонента фильтрации
+    const [isActive, setIsActive] = useState(false);
+
+    // Сост. для хранения списка брендов
+    const [brands, setBrands] = useState([]);
+
+    // Сост. для отслеживания того, является ли поиск допустимым или нет
+    const [isValid, setIsValid] = useState(false);
+
+    // Хук для управления пагинацией
+    const filter = useFilter({ limit: 50 });
 
 
+    // Обработчик события для обновления цены при фильтрации
     const setPrice = (e) => {
-        const el = e.target
-        let price
+        const el = e.target;
+        let price;
 
+        // Проверка на пустое значение
         if (el.value !== "") {
+            // Проверка на минимальное значение
             if (parseInt(el.value) < parseInt(el.min)) {
-                price = String(el.min)
+                price = String(el.min);
             } else {
-                price = String(parseInt(el.value))
+                price = String(parseInt(el.value));
             }
         } else {
-            price = 0
+            price = 0;
         }
 
-        setSearch({...defaultSearch, price: price})
-    }
+        // Обновление состояния поиска
+        setSearch({ ...defaultSearch, price: price });
+    };
 
+    //Обработчик события для обновления названия продукта при поиске
     const setName = (e) => {
-        const el = e.target
-        setSearch({...defaultSearch, product: el.value})
-    }
+        const el = e.target;
+        // Обновление состояния поиска
+        setSearch({ ...defaultSearch, product: el.value });
+    };
 
+    //обработчик события для обновления бренда в при поиске
     const setBrand = (e) => {
-        const el = e.target
-        setSearch({...defaultSearch, brand: el.value})
-    }
+        const el = e.target;
+        // Обновление состояния поиска
+        setSearch({ ...defaultSearch, brand: el.value });
+    };
 
+
+    //получаем список брендов с сервера
     const getBrands = async () => {
         try {
+            // Отправляем запроса для получение списка брендов
             const response = await request({
                 "action": "get_fields",
                 "params": {
@@ -54,61 +76,75 @@ const Filter = ({onChange, loading}) => {
                     "offset": filter.offset,
                     "limit": filter.limit,
                 }
-            })
-            const items = response.data.result.filter(b => b !== null)
-            setBrands(items)
-        } catch (error) {
+            });
 
+            // Фильтрация пустых значений
+            const items = response.data.result.filter(b => b !== null);
+
+            // Обновляем состояние списка брендов
+            setBrands(items);
+        } catch (error) {
+            //выводим в консоль ошибку
+            console.log(error)
         }
     };
 
+    // вызываем функцию getBrands при изменении filter.offset
     useEffect(() => {
-        getBrands()
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        getBrands();
     }, [filter.offset]);
 
-    const checkValid = () =>{
-        let isValid = false
+    // провека перед поиском
+    const checkValid = () => {
+        let isValid = false;
 
-        if (!!search.price){
-            isValid=true
+        //Проверка наличия значений в полях поиска
+        if (!!search.price) {
+            isValid = true;
         }
 
-        if (!!search.product){
-            isValid=true
+        if (!!search.product) {
+            isValid = true;
         }
 
-        if (!!search.brand){
-            isValid=true
+        if (!!search.brand) {
+            isValid = true;
         }
 
-        setIsValid(isValid)
-    }
+        //обновление состояния допустимости поиска
+        setIsValid(isValid);
+    };
 
     useEffect(checkValid, [search]);
 
-    const clickHandler = () =>{
-        if (isValid){
-            const t = {}
 
-            if (!!search.price){
-                t.price = parseInt(search.price)
+    // обработчик клика для отправки текущих параметров поиска обратно в родительский компонент
+    const clickHandler = () => {
+        //Проверка допустимости поиска
+        if (isValid) {
+            const t = {};
+
+            // Добавляем значения поиска в объект
+            if (!!search.price) {
+                t.price = parseInt(search.price);
             }
 
-            if (!!search.product){
-                t.product = search.product
+            if (!!search.product) {
+                t.product = search.product;
             }
 
-            if (!!search.brand){
-                t.brand = search.brand
+            if (!!search.brand) {
+                t.brand = search.brand;
             }
 
-            onChange(t)
-        }else{
-            onChange(null)
+            // Вызываем функцию onChange с параметрами поиска
+            onChange(t);
+        } else {
+            //Вызываем функцию onChange с пустым значением
+            onChange(null);
         }
-    }
+    };
+
 
     const FilterIcon = () => {
         return (

@@ -4,7 +4,7 @@ import hash from "@/helpers/hash";
 // Создаем функцию для отправки запросов с обработкой ошибок
 const request = async (data) => {
     try {
-        // Отправляем запрос с помощью библиотеки axios
+        // Отправляем запрос
         const response = await http(data)
         // Если запрос прошел успешно, возвращаем ответ
         return Promise.resolve(response)
@@ -26,14 +26,13 @@ const http = (data = {}) => {
     // Устанавливаем параметры запроса
     const options = {
         headers: {
-            // Устанавливаем заголовки запроса
             Accept: 'application/json',
             'Content-Type': 'application/json',
-            "X-Auth": hash(process.env.REACT_APP_PASS) // Хешируем пароль из переменной окружения
+            "X-Auth": hash(process.env.REACT_APP_PASS)
         },
-        method: "POST", // Устанавливаем метод запроса
-        baseURL: process.env.REACT_APP_API_URL, // Устанавливаем базовый URL для запросов
-        data: data, // Устанавливаем данные для отправки
+        method: "POST",
+        baseURL: process.env.REACT_APP_API_URL,
+        data: data,
     }
 
     // Создаем экземпляр axios с указанными параметрами

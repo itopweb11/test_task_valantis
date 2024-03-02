@@ -4,12 +4,6 @@ import {Link} from "react-router-dom";
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false)
-    const [scrollTop, setScrollTop] = useState(false);
-
-    const handleScroll = () => {
-        setScrollTop(window.scrollY > 1 ? true : false);
-    };
-    window.addEventListener('scroll', handleScroll);
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -69,7 +63,6 @@ const Header = () => {
                 <div style={{
                     background: isOpen ? 'white' : '',
                     position: isOpen ? 'fixed' : '',
-                    opacity: scrollTop && !isOpen ? '0.95' : '1'
                 }} className="h-[72px] w-full flex justify-between items-center top-0 z-20 px-[17px]">
                     <Link to="/">
                         <img className="w-[130px] h-[40px]" src={Logo} alt="logo"/>
