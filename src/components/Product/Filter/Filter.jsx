@@ -92,6 +92,8 @@ const Filter = ({onChange, loading}) => {
     // вызываем функцию getBrands при изменении filter.offset
     useEffect(() => {
         getBrands();
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filter.offset]);
 
     // провека перед поиском
