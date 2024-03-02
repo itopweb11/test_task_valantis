@@ -8,5 +8,5 @@ import Img6 from '@/img/card-img6.jpg'
 import Img7 from '@/img/card-img7.png'
 import Img9 from '@/img/card-img10.jpg'
 
-const JewelryToOrderData = [Img, Img1, Img2, Img3, Img4, Img5, Img6, Img7, Img9,]
-export default JewelryToOrderData;
+const ProductData = [Img, Img1, Img2, Img3, Img4, Img5, Img6, Img7, Img9,]
+export default ProductData;
